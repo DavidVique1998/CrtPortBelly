@@ -1,0 +1,12 @@
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\BEUCrtPortBelly.dll.config
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\BEUCrtPortBelly.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\BEUCrtPortBelly.pdb
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\EntityFramework.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\EntityFramework.xml
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.csprojAssemblyReference.cache
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.csproj.CoreCompileInputs.cache
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.csproj.CopyComplete
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.pdb
