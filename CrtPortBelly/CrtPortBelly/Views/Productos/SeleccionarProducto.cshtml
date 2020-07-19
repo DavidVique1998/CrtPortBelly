@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<BEUCrtPortBelly.Producto>
+
+@{
+    ViewBag.Title = "Seleccionar Productos";
+}
+
+
+<h2>Ropa</h2>
+
+<div class="container">
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="productoTienda">
+                    <img src="@Url.Content("~/Content/Imagenes/")@Html.DisplayFor(modelItem => item.prd_img)" />
+                    <h6>Nombre: @Html.DisplayFor(modelItem => item.prd_nom)</h6>
+                    <h6>Talla: @Html.DisplayFor(modelItem => item.prd_tal)</h6>
+                    <h6>Talla: @Html.DisplayFor(modelItem => item.prd_prc)$</h6>
+
+                    <button><h6>@Html.ActionLink("Agregar al carrito", "AddProducto", "ProductoEnCarritos", new { id = item.prd_id }, new { @class = "agregarBotton " })</h6></button>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>

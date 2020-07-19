@@ -61,6 +61,7 @@ namespace CrtPortBelly.Controllers
             {
                 producto.prd_img = "default";
             }
+
             if (ModelState.IsValid)
             {
                 ProductoBLL.Create(producto);
@@ -69,6 +70,7 @@ namespace CrtPortBelly.Controllers
             //ViewBag.Menssage = file.FileName;
             ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom", producto.cat_id);
             ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom", producto.prm_id);
+            ViewBag.file = fileBase;
             //producto.prd_img = SubirImagen(file);
             return View(producto);
         }
@@ -152,6 +154,10 @@ namespace CrtPortBelly.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult SeleccionarProducto()
+        {
+            return View(ProductoBLL.List());
+        }
         /// <summary>
         /// ////////////////////////////////////////////
         /// </summary>
@@ -196,6 +202,7 @@ namespace CrtPortBelly.Controllers
                 ViewBag.Message = "ERROR:" + ex.Message.ToString();
             }
         }
+
 
     }
 }

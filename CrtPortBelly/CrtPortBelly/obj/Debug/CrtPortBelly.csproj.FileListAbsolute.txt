@@ -84,3 +84,10 @@ C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\obj\Debug\Crt
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\obj\Debug\CrtPortBelly.csproj.CopyComplete
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\obj\Debug\CrtPortBelly.dll
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\obj\Debug\CrtPortBelly.pdb
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\BEUCrtPortBelly.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\EntityFramework.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\EntityFramework.SqlServer.dll
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\BEUCrtPortBelly.pdb
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\BEUCrtPortBelly.dll.config
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\EntityFramework.xml
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\CrtPortBelly\bin\EntityFramework.SqlServer.xml

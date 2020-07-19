@@ -71,9 +71,9 @@
             @Html.DisplayFor(modelItem => item.Promocion.prm_nom)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.prd_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.prd_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.prd_id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" })<br>
+            @Html.ActionLink("Ver", "Details", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" }) <br>
+            @Html.ActionLink("Borrar", "Delete", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
         </td>
     </tr>
 }

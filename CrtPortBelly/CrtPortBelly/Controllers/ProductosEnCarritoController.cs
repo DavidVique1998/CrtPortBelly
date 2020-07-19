@@ -123,7 +123,7 @@ namespace CrtPortBelly.Controllers
         }
 
         // GET: ProductoEnCarritos/Details/5
-        public ActionResult AddCarrito(int? id)
+        public ActionResult AddProducto(int? id)
         {
             if (id == null)
             {
@@ -143,7 +143,7 @@ namespace CrtPortBelly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCarrito([Bind(Include = "pcr_id,car_id,prd_id,pcr_est,prd_cnt,pcr_dateOfCreated")] ProductoEnCarrito productoEnCarrito)
+        public ActionResult AddProducto([Bind(Include = "pcr_id,car_id,prd_id,pcr_est,prd_cnt,pcr_dateOfCreated")] ProductoEnCarrito productoEnCarrito)
         {
 
             if (ModelState.IsValid)
