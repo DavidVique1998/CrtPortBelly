@@ -2,16 +2,24 @@
 using BEUCrtPortBelly.Queris;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
+using System.Web.UI.WebControls;
+using Image = System.Drawing.Image;
 
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    
     public class ProductosController : ApiController
     {
         public IHttpActionResult Post(Producto producto)
@@ -26,17 +34,18 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        //[ResponseType(typeof(List<Producto>))]
         public IHttpActionResult Get()
         {
             try
             {
-                List<Producto> todos = ProductoBLL.List();
+                List<Producto> todos = ProductoBLL.GetList();
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception)
             {
                 return BadRequest();
-            } 
+            }
         }
         public IHttpActionResult Delete(int id)
         {
@@ -64,8 +73,8 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
-        [HttpPost]
-        public IHttpActionResult Create(Producto producto)
+
+        public IHttpActionResult Creates(Producto producto)
         {
             HttpRequestMessage request = this.Request;
             if (!request.Content.IsMimeMultipartContent())
@@ -102,6 +111,9 @@ namespace WebApiPortBelly.Controllers
                 }
             }
         }
+
+       
+
         private string SubirImagen(HttpPostedFile file)
         {
             string nombre = "";
@@ -114,13 +126,12 @@ namespace WebApiPortBelly.Controllers
                     modelo.SubirArchivo(path, file);
                     return path;
                 }
-                catch ( UnsupportedMediaTypeException)
+                catch (UnsupportedMediaTypeException)
                 {
                     return "";
                 }
             return nombre;
-        }
-
+        } 
 
     }
 }

@@ -59,6 +59,40 @@ namespace BEUCrtPortBelly.Queris
             }
         }
 
+        public static bool Updates(Producto p)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Producto prd = new Producto();
+                        var order = db.Producto.AsNoTracking().Where(s => s.prd_id == p.prd_id).FirstOrDefault();
+                        prd.prd_id = order.prd_id;
+                        prd.prd_nom = p.prd_nom;
+                        prd.prd_crt = p.prd_crt;
+                        prd.prd_img = p.prd_img;
+                        prd.prd_prc = p.prd_prc;
+                        prd.prd_tal = p.prd_tal;
+                        prd.cat_id = p.cat_id;
+                        prd.prm_id = p.prm_id;
+                        prd.prd_dateOfCreated = order.prd_dateOfCreated;
+                        prd.prd_cnt = p.prd_cnt;
+                        db.Entry(prd).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return false;                      
+                    }
+                }
+            }
+        }
+
         public static void Update(int prd_id, int cantidad)
         {
             using (PortBellyDBEntities db = new PortBellyDBEntities())
@@ -121,6 +155,12 @@ namespace BEUCrtPortBelly.Queris
         {
             PortBellyDBEntities db = new PortBellyDBEntities();
             return db.Producto.Where(x => x.prm_id.Equals(prm_id)).ToList();
+        }
+
+        public static List<Producto> GetList()
+        {
+            PortBellyDBEntities db = new PortBellyDBEntities();
+            return db.Producto.ToList();
         }
 
     }

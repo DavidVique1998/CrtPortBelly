@@ -9,6 +9,7 @@
 
 namespace BEUCrtPortBelly
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -32,8 +33,9 @@ namespace BEUCrtPortBelly
         [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
         [Display(Name = "Creado")]
         public System.DateTime pcr_dateOfCreated { get; set; }
-    
+        //[JsonIgnore]
         public virtual Carrito Carrito { get; set; }
+        //[JsonIgnore]
         public virtual Producto Producto { get; set; }
     }
 }
