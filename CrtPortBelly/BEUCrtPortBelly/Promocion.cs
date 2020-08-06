@@ -11,9 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Promocion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,27 +19,11 @@ namespace BEUCrtPortBelly
         {
             this.Producto = new HashSet<Producto>();
         }
-        [ScaffoldColumn(false)]
+    
         public int prm_id { get; set; }
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Los Nombres son requerido"), MaxLength(50)]
-        [Display(Name = "Nombres")]
         public string prm_nom { get; set; }
-        [Required(ErrorMessage = "El tipo de Promoción es requerido")]
-        [Display(Name = "Tipo")]
-        [DefaultValue(true)]
         public bool prm_tip { get; set; }
-        //[RegularExpression("(^[0-9]+$)", ErrorMessage = "Solo se permiten números")]
-        [Required(ErrorMessage = "El Número es requerido")]
-        [Display(Name = "Cantidad")]
-        [DefaultValue(1)]
-        //[Range(0d, (double)decimal.MaxValue, ErrorMessage = "Amount must be greater than zero.")]
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor a cero.")]
         public int prm_can { get; set; }
-        [Range(0, 100, ErrorMessage = "El porcentaje debe ser entre 0 y 100")]
-        [Required(ErrorMessage = "El Porcentaje es requerido")]
-        [Display(Name = "Porcentaje de Descuento")]
-        [DefaultValue(0)]
         public byte prm_por { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

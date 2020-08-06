@@ -11,14 +11,15 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class ProductoController : ApiController
+    public class ProductoEnCarritosController : ApiController
     {
-        public IHttpActionResult Post(Producto producto)
+        
+        public IHttpActionResult Post(ProductoEnCarrito prdCarrito)
         {
             try
             {
-                ProductoBLL.Create(producto);
-                return Content(HttpStatusCode.Created, "Producto creado correctamente");
+                ProductoEnCarritoBLL.Create(prdCarrito);
+                return Content(HttpStatusCode.Created, "Producto añadido correctamente");
             }
             catch (Exception ex)
             {
@@ -30,8 +31,8 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                Producto producto = ProductoBLL.Get(id);
-                return Content(HttpStatusCode.OK, producto);
+                ProductoEnCarrito prdCarrito = ProductoEnCarritoBLL.Get(id);
+                return Content(HttpStatusCode.OK, prdCarrito);
             }
             catch (Exception)
             {
@@ -42,7 +43,7 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                List<Producto> todos = ProductoBLL.GetList();
+                List<ProductoEnCarrito> todos = ProductoEnCarritoBLL.List();
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception)
@@ -54,39 +55,26 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                ProductoBLL.Delete(id);
-                return Content(HttpStatusCode.OK ,"Producto eliminado correctamente");
+                ProductoEnCarritoBLL.Delete(id);
+                return Ok("ProductoEnCarrito eliminado correctamente");
             }
             catch (Exception ex)
             {
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
-        public IHttpActionResult Put(Producto producto)
+        public IHttpActionResult Put(ProductoEnCarrito prdCarrito)
         {
             try
             {
-                bool llave= ProductoBLL.Updates(producto);
-                if (llave)
-                {
-                    return Content(HttpStatusCode.Accepted, "Producto actualizado correctamente");
-                }
-                else
-                {
-                    return Content(HttpStatusCode.BadRequest,"No se puede actualizar el producto");
-                }
-                
+                ProductoEnCarritoBLL.Updates(prdCarrito);
 
+                return Content(HttpStatusCode.Accepted, "ProductoEnCarrito actualizado correctamente");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message+producto.ToString());
+                return BadRequest(ex.Message + prdCarrito.ToString());
             }
         }
-        //private string EliminarImagen(string nombre)
-        //{
-
-        //}
     }
 }

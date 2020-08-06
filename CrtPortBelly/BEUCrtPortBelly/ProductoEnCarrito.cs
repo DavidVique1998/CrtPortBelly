@@ -9,33 +9,19 @@
 
 namespace BEUCrtPortBelly
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ProductoEnCarrito
     {
-        [ScaffoldColumn(false)]
         public int pcr_id { get; set; }
-        [ScaffoldColumn(false)]
         public int car_id { get; set; }
-        [ScaffoldColumn(false)]
         public int prd_id { get; set; }
-        [DataType(DataType.Text)]
-        [Display(Name = "Estado")]
-        [Editable(false)]
         public string pcr_est { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor a cero.")]
-        [Required(ErrorMessage = "La cantidad es requerida"),]
-        [Display(Name = "Cantidad")]
         public int pcr_cnt { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
-        [Display(Name = "Creado")]
         public System.DateTime pcr_dateOfCreated { get; set; }
-        //[JsonIgnore]
+    
         public virtual Carrito Carrito { get; set; }
-        //[JsonIgnore]
         public virtual Producto Producto { get; set; }
     }
 }

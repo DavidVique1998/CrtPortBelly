@@ -11,14 +11,15 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public class ProductoController : ApiController
+    public class CarritosController : ApiController
     {
-        public IHttpActionResult Post(Producto producto)
+        
+        public IHttpActionResult Post(Carrito carrito)
         {
             try
             {
-                ProductoBLL.Create(producto);
-                return Content(HttpStatusCode.Created, "Producto creado correctamente");
+                CarritoBLL.Create(carrito);
+                return Content(HttpStatusCode.Created, "Carritos creado correctamente");
             }
             catch (Exception ex)
             {
@@ -30,8 +31,8 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                Producto producto = ProductoBLL.Get(id);
-                return Content(HttpStatusCode.OK, producto);
+                Carrito carrito = CarritoBLL.Get(id);
+                return Content(HttpStatusCode.OK, carrito);
             }
             catch (Exception)
             {
@@ -42,7 +43,7 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                List<Producto> todos = ProductoBLL.GetList();
+                List<Carrito> todos = CarritoBLL.List();
                 return Content(HttpStatusCode.OK, todos);
             }
             catch (Exception)
@@ -54,8 +55,8 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                ProductoBLL.Delete(id);
-                return Content(HttpStatusCode.OK ,"Producto eliminado correctamente");
+                CarritoBLL.Delete(id);
+                return Ok("Carritos eliminado correctamente");
             }
             catch (Exception ex)
             {
@@ -63,30 +64,21 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
-        public IHttpActionResult Put(Producto producto)
+        public IHttpActionResult Put(Carrito carrito)
         {
             try
             {
-                bool llave= ProductoBLL.Updates(producto);
-                if (llave)
-                {
-                    return Content(HttpStatusCode.Accepted, "Producto actualizado correctamente");
-                }
-                else
-                {
-                    return Content(HttpStatusCode.BadRequest,"No se puede actualizar el producto");
-                }
-                
+                CarritoBLL.Update(carrito);
+
+                return Content(HttpStatusCode.Accepted, "Alumno actualizado correctamente");
+
+
 
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message+producto.ToString());
+                return BadRequest(ex.Message + carrito.ToString());
             }
         }
-        //private string EliminarImagen(string nombre)
-        //{
-
-        //}
     }
 }

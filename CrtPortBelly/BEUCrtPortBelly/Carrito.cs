@@ -11,8 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Carrito
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +20,9 @@ namespace BEUCrtPortBelly
             this.CuerpoFactura = new HashSet<CuerpoFactura>();
             this.ProductoEnCarrito = new HashSet<ProductoEnCarrito>();
         }
-        [ScaffoldColumn(false)]
+    
         public int car_id { get; set; }
-        [ScaffoldColumn(false)]
         public int cln_id { get; set; }
-        [DataType(DataType.Text)]
-        [Display(Name = "Tipo")]
-        [Editable(false)]
         public string car_tipo { get; set; }
     
         public virtual Cliente Cliente { get; set; }

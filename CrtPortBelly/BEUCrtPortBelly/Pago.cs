@@ -11,31 +11,14 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Pago
     {
-        [ScaffoldColumn(false)]
         public int pgo_id { get; set; }
-        [ScaffoldColumn(false)]
         public int cln_id { get; set; }
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "El nombre de la tarjeta es requerido"), MaxLength(30)]
-        [Display(Name = "Nombre de la tarjeta")]
         public string pgo_nom { get; set; }
-        [DataType(DataType.CreditCard)]
-        [Required(ErrorMessage = "El número de la tarjeta es requerida")]
-        //[RegularExpression(@"^(?:.*[0-9]){16,16}$", ErrorMessage = "Deben ser 16 números")]
-        [Display(Name = "Número Tarjeta")]
-        //[StringLength(16, MinimumLength =16)]
         public string pgo_ntg { get; set; }
-        [DataType(DataType.Date)]
-        [Required(ErrorMessage = "La fecha de vencimiento es requerido")]
-        [DisplayFormat(DataFormatString = "mm/yyyy")]
         public System.DateTime pgo_fven { get; set; }
-        [RegularExpression(@"^(?:.*[0-9]){3,3}$", ErrorMessage = "Deben ser 3 números ###")]
-        [Required(ErrorMessage = "El codigo de la Seguridad es requerido")]
-        [Display(Name = "Número Tarjeta")]
         public Nullable<int> pgo_cseg { get; set; }
     
         public virtual Cliente Cliente { get; set; }

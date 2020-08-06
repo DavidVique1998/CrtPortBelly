@@ -11,15 +11,11 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CuerpoFactura
     {
-        [ScaffoldColumn(false)]
         public int crf_id { get; set; }
-        [ScaffoldColumn(false)]
         public int cbf_id { get; set; }
-        [ScaffoldColumn(false)]
         public int car_id { get; set; }
     
         public virtual CabezaFactura CabezaFactura { get; set; }

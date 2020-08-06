@@ -11,8 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CabezaFactura
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +19,9 @@ namespace BEUCrtPortBelly
         {
             this.CuerpoFactura = new HashSet<CuerpoFactura>();
         }
-        [ScaffoldColumn(false)]
+    
         public int cbf_id { get; set; }
-        [ScaffoldColumn(false)]
         public int cln_id { get; set; }
-        [Display(Name = "Creado")]
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
         public System.DateTime cbf_dateOfCreated { get; set; }
     
         public virtual Cliente Cliente { get; set; }

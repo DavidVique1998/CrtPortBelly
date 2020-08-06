@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2f99ed0dbee04bd8a023824de3df30cb" Name="Diagram1">
+      <Diagram DiagramId="2f99ed0dbee04bd8a023824de3df30cb" Name="Diagram1" ZoomLevel="62">
         <EntityTypeShape EntityType="Entities.CabezaFactura" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Entities.Carrito" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.Categoria" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.Categoria" Width="1.5" PointX="9.625" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Entities.Cliente" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Entities.CuerpoFactura" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.Pago" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.Producto" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.ProductoEnCarrito" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.Promocion" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.Pago" Width="1.5" PointX="2.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.Producto" Width="1.5" PointX="7.375" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.ProductoEnCarrito" Width="1.5" PointX="5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.Promocion" Width="1.5" PointX="9.5" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Entities.Usuario" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="Entities.FK__CabezaFac__cln_i__6442E2C9" ManuallyRouted="false" />
         <AssociationConnector Association="Entities.FK__CuerpoFac__cbf_i__671F4F74" ManuallyRouted="false" />

@@ -11,8 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +19,8 @@ namespace BEUCrtPortBelly
         {
             this.Producto = new HashSet<Producto>();
         }
-        [ScaffoldColumn(false)]
+    
         public int cat_id { get; set; }
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "El nombre es requerido"), MaxLength(30)]
-        [Display(Name = "Nombre")]
         public string cat_nom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

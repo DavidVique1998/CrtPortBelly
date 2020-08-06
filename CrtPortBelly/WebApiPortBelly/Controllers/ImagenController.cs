@@ -26,37 +26,47 @@ namespace WebApiPortBelly.Controllers
                 imageName = SubirImagen(postedFile);
                 if (imageName != "")
                 {
-                    return Content(HttpStatusCode.Created, imageName);
+                    return Content(HttpStatusCode.OK, imageName);
                 }
                 else
                 {
-                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto");
+                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto Crear");
                 }
-                ////Create custom fileName
-                //imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
-                //imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
-                //var filePath = HttpContext.Current.Server.MapPath("~/Content/Imagenes/" + imageName);
-                //postedFile.SaveAs(filePath);
-                //return Content(HttpStatusCode.Created, imageName);
             }
             catch (Exception)
             {
                 return Content(HttpStatusCode.UnsupportedMediaType, "Error Imagen no soportada");
             }
-            
         }
 
-        
         public IHttpActionResult GetImage(string name)
         {
             try
             {
                 try
                 {
-                    //string name= ProductoBLL.Get(id).prd_img;
-                    Image data = Image.FromFile(HttpContext.Current.Server.MapPath("~/Content/Imagenes/") + name);
-                    byte[] result = (byte[])new ImageConverter().ConvertTo(data, typeof(byte[]));
-                    return Content(HttpStatusCode.OK, result);
+                    string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + name);
+                    //Compruebo si la imagen existe
+                    if (File.Exists(filePath))
+                    {
+                        //Optengo la imagen de la carpeta
+                        using (Image data = Image.FromFile(filePath))
+                        {
+                            //transformo en bytes para mandar como request
+                            byte[] result = (byte[])new ImageConverter().ConvertTo(data, typeof(byte[]));
+                            return Content(HttpStatusCode.OK, result);
+                        }
+                    }
+                    else
+                    {
+                        //Optengo la imagen de la carpeta
+                        using (Image data = Image.FromFile(HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/default.png")))
+                        {
+                            //transformo en bytes para mandar como request
+                            byte[] result = (byte[])new ImageConverter().ConvertTo(data, typeof(byte[]));
+                            return Content(HttpStatusCode.OK, result);
+                        }
+                    }
                 }
                 catch (UnsupportedMediaTypeException)
                 {
@@ -74,14 +84,8 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                if (EliminarImagen(name))
-                {
-                    return Content(HttpStatusCode.Accepted, "La imagen se eliminó correctamente");
-                }
-                else
-                {
-                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto");
-                }
+                EliminarImagen(name);
+                return Content(HttpStatusCode.OK, "La imagen se eliminó correctamente " + name);
 
             }
             catch (Exception ex)
@@ -90,19 +94,20 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
-
         private string SubirImagen(HttpPostedFile postedFile )
         {
             string imageName = "";
+            
             if (postedFile != null && postedFile.ContentLength > 0)
                 try
                 {
                     ArchivoBLL archivoBLL = new ArchivoBLL();
-                    
+
                     //Create custom fileName
                     imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
-                    var filePath = HttpContext.Current.Server.MapPath("~/Content/Imagenes/" + imageName);
+                    var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
+                    Console.WriteLine(filePath);
                     if (!archivoBLL.ComprobarRuta(filePath))
                     {
                         archivoBLL.SubirArchivo(filePath, postedFile);
@@ -115,31 +120,19 @@ namespace WebApiPortBelly.Controllers
                 }
             return imageName;
         }
-        private bool EliminarImagen(string imageName)
+        private void EliminarImagen(string imageName)
         {
-            string filePath = HttpContext.Current.Server.MapPath("~/Content/Imagenes/" + imageName);
             try
             {
+                string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
                 ArchivoBLL archivoBLL = new ArchivoBLL();
-                if (File.Exists(filePath))
+                if (archivoBLL.ComprobarRuta(filePath))
                 {
-                    File.Delete(filePath);
-                    //archivoBLL.EliminarArchivo(filePath);
-                    return true;
-                }
-                //if (archivoBLL.ComprobarRuta(filePath))
-                //{
-                //    archivoBLL.EliminarArchivo(filePath);
-                //    return true;
-                //}
-                else
-                {
-                    return false;
+                    archivoBLL.EliminarArchivo(filePath);
                 }
             }
             catch (Exception)
             {
-                return false;
             }
         }
     }

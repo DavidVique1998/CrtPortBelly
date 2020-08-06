@@ -11,9 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,50 +19,21 @@ namespace BEUCrtPortBelly
         {
             this.ProductoEnCarrito = new HashSet<ProductoEnCarrito>();
         }
-        [ScaffoldColumn(false)]
+    
         public int prd_id { get; set; }
-        [ScaffoldColumn(false)]
         public int cat_id { get; set; }
-        [ScaffoldColumn(false)]
         public int prm_id { get; set; }
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "El Nombre es requerido"), MaxLength(50)]
-        [Display(Name = "Nombre")]
         public string prd_nom { get; set; }
-        [DataType(DataType.Text)]
-        //[Required(ErrorMessage = "La Imagen es requerida"), MaxLength(200)]
-        [MaxLength(150, ErrorMessage = "El Nombre debe ser menor a 150 letras")]
-        [Display(Name = "Imagen")]
         public string prd_img { get; set; }
-        [DataType(DataType.Text)]
-        [Required(ErrorMessage = "La talla es requerida"), MaxLength(5)]
-        [Display(Name = "Talla")]
         public string prd_tal { get; set; }
-        [DataType(DataType.Text)]
-        [MaxLength(200, ErrorMessage = "Las caracterísiticas deben ser menor a 150 letras")]
-        [Display(Name = "Caracteristicas")]
         public string prd_crt { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad debe ser mayor a cero.")]
-        [Required(ErrorMessage = "La cantidad es requerida"),]
-        [Display(Name = "Cantidad")]
         public int prd_cnt { get; set; }
-
-        [Required(ErrorMessage = "El precio es requerido"),]
-        [Display(Name = "Precio")]
-        [Range(0.01,float.MaxValue,ErrorMessage ="El precio debe ser decimal mayor a cero")]
         public decimal prd_prc { get; set; }
-        [Display(Name = "Creado")]
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
         public System.DateTime prd_dateOfCreated { get; set; }
+    
         public virtual Categoria Categoria { get; set; }
         public virtual Promocion Promocion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductoEnCarrito> ProductoEnCarrito { get; set; }
-        
     }
-    public enum Talla
-    {
-        XL, L, M, S, XS
-    }
-
 }

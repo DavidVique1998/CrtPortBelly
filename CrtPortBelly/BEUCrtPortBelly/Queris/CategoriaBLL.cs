@@ -60,6 +60,32 @@ namespace BEUCrtPortBelly.Queris
             }
         }
 
+         public static bool Updates(Categoria p)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Categoria cat = new Categoria();
+                        var order = db.Categoria.AsNoTracking().Where(s => s.cat_id == p.cat_id).FirstOrDefault();
+                        cat.cat_id = order.cat_id;
+                        cat.cat_nom = p.cat_nom;
+                        db.Entry(cat).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return false;                      
+                    }
+                }
+            }
+        }
+
         public static void Delete(int? id)
         {
             using (PortBellyDBEntities db = new PortBellyDBEntities())

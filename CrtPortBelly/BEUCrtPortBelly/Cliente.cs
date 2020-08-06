@@ -11,8 +11,7 @@ namespace BEUCrtPortBelly
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +21,10 @@ namespace BEUCrtPortBelly
             this.Carrito = new HashSet<Carrito>();
             this.Pago = new HashSet<Pago>();
         }
-        [ScaffoldColumn(false)]
+    
         public int cln_id { get; set; }
-        [ScaffoldColumn(false)]
         public int uso_id { get; set; }
-        [ScaffoldColumn(false)]
         public string cln_tipo { get; set; }
-        [Display(Name = "Creado")]
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
         public System.DateTime cln_dateOfCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

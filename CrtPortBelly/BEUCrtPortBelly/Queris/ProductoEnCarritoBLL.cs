@@ -67,6 +67,40 @@ namespace BEUCrtPortBelly.Queris
                 }
             }
         }
+        public static bool Updates(ProductoEnCarrito pc)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        ProductoEnCarrito prd = new ProductoEnCarrito();
+                        var order = db.ProductoEnCarrito.AsNoTracking().Where(s => s.pcr_id == pc.pcr_id).FirstOrDefault();
+                        prd.pcr_id = order.pcr_id;
+                        prd.prd_id = pc.prd_id;
+                        //Restablecer cantidad productos
+                        var cantidad = order.pcr_cnt - pc.pcr_cnt;
+                        prd.pcr_cnt = pc.pcr_cnt;
+                        order.Producto.prd_cnt = order.Producto.prd_cnt + cantidad;
+                        //-----------------------
+                        prd.pcr_est = pc.pcr_est;
+                        prd.pcr_dateOfCreated = order.pcr_dateOfCreated;
+
+                        prd.Producto = order.Producto;
+                        db.Entry(prd).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
 
         public static void Delete(int? id)
         {
