@@ -56,7 +56,7 @@ namespace WebApiPortBelly.Controllers
             try
             {
                 ProductoEnCarritoBLL.Delete(id);
-                return Ok("ProductoEnCarrito eliminado correctamente");
+                return Ok("Producto en Carrito eliminado correctamente");
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace WebApiPortBelly.Controllers
             {
                 ProductoEnCarritoBLL.Updates(prdCarrito);
 
-                return Content(HttpStatusCode.Accepted, "ProductoEnCarrito actualizado correctamente");
+                return Content(HttpStatusCode.Accepted, "Producto en Carrito actualizado correctamente");
             }
             catch (Exception ex)
             {
