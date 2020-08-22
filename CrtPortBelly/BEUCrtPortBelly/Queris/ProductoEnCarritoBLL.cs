@@ -75,6 +75,7 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
+
                         ProductoEnCarrito prd = new ProductoEnCarrito();
                         var order = db.ProductoEnCarrito.AsNoTracking().Where(s => s.pcr_id == pc.pcr_id).FirstOrDefault();
                         prd.pcr_id = order.pcr_id;
