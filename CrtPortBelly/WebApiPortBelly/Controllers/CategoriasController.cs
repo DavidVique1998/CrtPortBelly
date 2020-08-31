@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [Authorize(Roles = "Administrador")]
     public class CategoriasController : ApiController
     {
         public IHttpActionResult Post(Categoria producto)

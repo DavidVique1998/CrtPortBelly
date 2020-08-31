@@ -79,7 +79,7 @@ namespace BEUCrtPortBelly.Queris
                         transaction.Commit();
                         return true;
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                         transaction.Rollback();
                         return false;

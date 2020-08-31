@@ -13,8 +13,10 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    
     public class ImagenController : ApiController
     {
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Post()
         {
             try
@@ -38,7 +40,7 @@ namespace WebApiPortBelly.Controllers
                 return Content(HttpStatusCode.UnsupportedMediaType, "Error Imagen no soportada");
             }
         }
-
+        [Authorize(Roles = "Administrador,Cliente")]
         public IHttpActionResult GetImage(string name)
         {
             try
@@ -80,6 +82,7 @@ namespace WebApiPortBelly.Controllers
 
             }
         }
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(string name)
         {
             try

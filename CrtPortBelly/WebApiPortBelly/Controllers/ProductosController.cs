@@ -19,9 +19,11 @@ using Image = System.Drawing.Image;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    
+
+   
     public class ProductosController : ApiController
     {
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Post(Producto producto)
         {
             try
@@ -34,6 +36,7 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize(Roles = "Administrador,Cliente")]
         //[ResponseType(typeof(List<Producto>))]
         public IHttpActionResult Get()
         {
@@ -47,6 +50,7 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest();
             }
         }
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(int id)
         {
             try
@@ -59,7 +63,7 @@ namespace WebApiPortBelly.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [Authorize(Roles = "Administrador,Cliente")]
         public IHttpActionResult Get(int id)
         {
             try
@@ -73,7 +77,7 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Creates(Producto producto)
         {
             HttpRequestMessage request = this.Request;

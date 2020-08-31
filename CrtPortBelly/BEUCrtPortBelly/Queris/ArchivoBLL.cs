@@ -63,7 +63,6 @@ namespace BEUCrtPortBelly.Queris
             catch (Exception ex)
             {
                 this.error = ex;
-                throw;
             }
         }
     }

@@ -11,9 +11,11 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+
+    [Authorize(Roles = "Administrador,Cliente")]
     public class CarritosController : ApiController
     {
-        
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Post(Carrito carrito)
         {
             try
@@ -26,7 +28,7 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Get(int id)
         {
             try
@@ -39,6 +41,7 @@ namespace WebApiPortBelly.Controllers
                 return NotFound();
             }
         }
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Get()
         {
             try
@@ -51,6 +54,7 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest();
             }
         }
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(int id)
         {
             try
@@ -63,17 +67,13 @@ namespace WebApiPortBelly.Controllers
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Put(Carrito carrito)
         {
             try
             {
                 CarritoBLL.Update(carrito);
-
                 return Content(HttpStatusCode.Accepted, "Alumno actualizado correctamente");
-
-
-
             }
             catch (Exception ex)
             {

@@ -10,9 +10,13 @@ using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
+
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+
     public class ProductoController : ApiController
     {
+
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Post(Producto producto)
         {
             try
@@ -25,7 +29,8 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+ 
+        [Authorize(Roles = "Administrador,Cliente")]
         public IHttpActionResult Get(int id)
         {
             try
@@ -38,6 +43,8 @@ namespace WebApiPortBelly.Controllers
                 return NotFound();
             }
         }
+
+        [Authorize(Roles = "Administrador,Cliente")]
         public IHttpActionResult Get()
         {
             try
@@ -50,6 +57,8 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(int id)
         {
             try
@@ -63,6 +72,7 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Put(Producto producto)
         {
             try

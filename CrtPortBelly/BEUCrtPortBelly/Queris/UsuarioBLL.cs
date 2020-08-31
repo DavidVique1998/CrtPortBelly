@@ -88,9 +88,10 @@ namespace BEUCrtPortBelly.Queris
 
         public static List<Usuario> List()
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-
-            return db.Usuario.ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Usuario.ToList();
+            }
         }
 
         /*public static List<Usuario> ListToNames()
@@ -109,20 +110,78 @@ namespace BEUCrtPortBelly.Queris
 
         private static List<Usuario> GetUsuarios(string criterio)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Usuario.Where(x => x.uso_rol.ToLower().Contains(criterio)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Usuario.Where(x => x.uso_rol.ToLower().Contains(criterio)).ToList();
+            }
         }
 
         private static Usuario GetUsuario(string correo)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Usuario.FirstOrDefault(x => x.uso_cor == correo);
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Usuario.FirstOrDefault(x => x.uso_cor == correo);
+            }
         }
 
         public static Usuario GetUsuarioByUsu(string usu)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Usuario.FirstOrDefault(x => x.uso_usu == usu);
+            using (PortBellyDBEntities db = new PortBellyDBEntities()) {
+                return db.Usuario.FirstOrDefault(x => x.uso_usu == usu);
+            }
+        }
+
+        public static Usuario GetUsuarioByMail(string cor)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Usuario.FirstOrDefault(x => x.uso_cor == cor);
+            }
+        }
+
+        public static Usuario LoginByMail(string cor, string pass)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                Usuario usu= db.Usuario.FirstOrDefault(x => x.uso_cor == cor);
+                if (usu != null)
+                {
+                    if (usu.uso_con == pass)
+                    {
+                        return usu;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public static Usuario LoginByUsu(string usuario, string pass)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                Usuario usu = db.Usuario.FirstOrDefault(x => x.uso_usu == usuario);
+                if (usu != null)
+                {
+                    if (usu.uso_con == pass)
+                    {
+                        return usu;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
     }
