@@ -32,7 +32,7 @@ namespace WebApiPortBelly.Controllers
                 }
                 else
                 {
-                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto Crear");
+                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto al crear");
                 }
             }
             catch (Exception)
@@ -82,6 +82,8 @@ namespace WebApiPortBelly.Controllers
 
             }
         }
+
+
         [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(string name)
         {
@@ -96,7 +98,7 @@ namespace WebApiPortBelly.Controllers
                 return Content(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-
+        [Authorize(Roles = "Administrador")]
         private string SubirImagen(HttpPostedFile postedFile )
         {
             string imageName = "";
@@ -110,10 +112,13 @@ namespace WebApiPortBelly.Controllers
                     imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
                     var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
-                    Console.WriteLine(filePath);
                     if (!archivoBLL.ComprobarRuta(filePath))
                     {
                         archivoBLL.SubirArchivo(filePath, postedFile);
+                    }
+                    else
+                    {
+                        imageName = "";
                     }
                     //postedFile.SaveAs(filePath);
                 }
@@ -123,6 +128,7 @@ namespace WebApiPortBelly.Controllers
                 }
             return imageName;
         }
+        [Authorize(Roles = "Administrador")]
         private void EliminarImagen(string imageName)
         {
             try

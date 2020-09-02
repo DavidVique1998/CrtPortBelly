@@ -84,29 +84,26 @@ namespace BEUCrtPortBelly.Queris
 
         public static List<Cliente> List()
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Cliente.Include(c => c.Usuario).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Cliente.Include(c => c.Usuario).ToList();
+            }
         }
 
-        public static List<Cliente> List(int uso_usu)
+        public static List<Cliente> List(int uso_id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Cliente.Where(x => x.uso_id.Equals(uso_usu)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Cliente.Where(x => x.uso_id.Equals(uso_id)).ToList();
+            }
         }
 
-        /*public static List<Cliente> ListToNames()
+        public static Cliente ClienteByUsu(int uso_id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            List<Cliente> result = new List<Cliente>();
-            db.Cliente.ToList().ForEach(x =>
-                result.Add(
-                    new Cliente
-                    {
-                        nombre = x.nrc + "-" + x.nombre,
-                        idCliente = x.idCliente
-                    }));
-            return result;
-        }*/
-
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Cliente.FirstOrDefault(x => x.uso_id==uso_id);
+            }
+        }
     }
 }

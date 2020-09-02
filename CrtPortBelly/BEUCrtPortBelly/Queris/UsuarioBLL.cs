@@ -16,19 +16,21 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
-                        a.uso_rol = "Cliente";
+                        
                         db.Usuario.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
-                        Usuario u = GetUsuarioByUsu(a.uso_usu);
-                        Cliente c = new Cliente();
-                        c.uso_id = u.uso_id;
-                        ClienteBLL.Create(c);
+                        Usuario u = GetUsuarioByMail(a.uso_cor);
+                        if (u != null)
+                        {
+                            Cliente c = new Cliente();
+                            c.uso_id = u.uso_id;
+                            ClienteBLL.Create(c);
+                        }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
-                        throw ex;
                     }
                 }
             }
@@ -38,8 +40,10 @@ namespace BEUCrtPortBelly.Queris
 
         public static Usuario Get(int? id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Usuario.Find(id);
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Usuario.Find(id);
+            }
         }
 
         public static void Update(Usuario usuario)
@@ -55,10 +59,9 @@ namespace BEUCrtPortBelly.Queris
                         db.SaveChanges();
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
-                        throw ex;
                     }
                 }
             }
@@ -77,10 +80,9 @@ namespace BEUCrtPortBelly.Queris
                         db.SaveChanges();
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
-                        throw ex;
                     }
                 }
             }
@@ -91,36 +93,6 @@ namespace BEUCrtPortBelly.Queris
             using (PortBellyDBEntities db = new PortBellyDBEntities())
             {
                 return db.Usuario.ToList();
-            }
-        }
-
-        /*public static List<Usuario> ListToNames()
-        {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            List<Usuario> result = new List<Usuario>();
-            db.Usuario.ToList().ForEach(x =>
-                result.Add(
-                    new 
-                    {
-                        nombres = x.nombres + " " + x.apellidos,
-                        idalumno = x.idalumno
-                    }));
-            return result;
-        }*/
-
-        private static List<Usuario> GetUsuarios(string criterio)
-        {
-            using (PortBellyDBEntities db = new PortBellyDBEntities())
-            {
-                return db.Usuario.Where(x => x.uso_rol.ToLower().Contains(criterio)).ToList();
-            }
-        }
-
-        private static Usuario GetUsuario(string correo)
-        {
-            using (PortBellyDBEntities db = new PortBellyDBEntities())
-            {
-                return db.Usuario.FirstOrDefault(x => x.uso_cor == correo);
             }
         }
 

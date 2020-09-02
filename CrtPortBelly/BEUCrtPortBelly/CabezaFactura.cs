@@ -9,6 +9,7 @@
 
 namespace BEUCrtPortBelly
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -23,7 +24,7 @@ namespace BEUCrtPortBelly
         public int cbf_id { get; set; }
         public int cln_id { get; set; }
         public System.DateTime cbf_dateOfCreated { get; set; }
-    
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuerpoFactura> CuerpoFactura { get; set; }

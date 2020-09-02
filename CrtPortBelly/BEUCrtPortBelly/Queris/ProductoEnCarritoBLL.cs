@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -127,21 +128,94 @@ namespace BEUCrtPortBelly.Queris
         }
         public static List<ProductoEnCarrito> List()
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.ProductoEnCarrito.Include(p => p.Carrito).Include(p => p.Producto).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.ProductoEnCarrito.Include(p => p.Carrito).Include(p => p.Producto).ToList();
+            }
         }
 
         public static List<ProductoEnCarrito> List(int car_id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.ProductoEnCarrito.Where(x => x.car_id.Equals(car_id)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.ProductoEnCarrito.Where(x => x.car_id.Equals(car_id)).ToList();
+            }
         }
 
         public static List<ProductoEnCarrito> GetProdutsInCarByState(string pcr_est)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.ProductoEnCarrito.Where(x => x.pcr_est.Equals(pcr_est)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.ProductoEnCarrito.Where(x => x.pcr_est.Equals(pcr_est)).ToList();
+            }
+        }
+        public static List<ProductoEnCarrito> GetProdutsInCarByCart(int car_id)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.ProductoEnCarrito.Where(x => x.car_id.Equals(car_id)).ToList();
+            }
         }
 
+        public static List<ProductoEnCarrito> GetProdutsPendInCarByCli(int cln_id)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                List<ProductoEnCarrito> productos= db.ProductoEnCarrito.Where(c => c.Carrito.Cliente.cln_id == cln_id && c.Carrito.car_tipo == "Pendiente").ToList();
+                if (productos != null)
+                {
+                    foreach(var item in productos)
+                    {
+                        Producto producto = new Producto();
+                        producto.prd_id = item.Producto.prd_id;
+                        producto.prd_nom = item.Producto.prd_nom;
+                        producto.prd_img = item.Producto.prd_img;
+                        producto.prd_prc = item.Producto.prd_prc;
+                        producto.prd_tal = item.Producto.prd_tal;
+                        producto.prd_crt = item.Producto.prd_crt;
+                        producto.prd_cnt = item.Producto.prd_cnt;
+                        producto.cat_id = item.Producto.cat_id;
+                        producto.prm_id = item.Producto.prm_id;
+                        producto.prd_dateOfCreated = item.Producto.prd_dateOfCreated;
+                        producto.Promocion = item.Producto.Promocion;
+                        producto.Categoria = item.Producto.Categoria;
+                        producto.ProductoEnCarrito = item.Producto.ProductoEnCarrito;
+                        item.Producto = producto;
+                    }
+                }
+                return productos;
+            }
+        }
+
+
+        public static List<ProductoEnCarrito> GetProdutsPagInCarByCli(int cln_id)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                List<ProductoEnCarrito> productos= db.ProductoEnCarrito.Where(c => c.Carrito.Cliente.cln_id==cln_id && c.Carrito.car_tipo=="Pagado").ToList();
+                if (productos != null)
+                {
+                    foreach (var item in productos)
+                    {
+                        Producto producto = new Producto();
+                        producto.prd_id = item.Producto.prd_id;
+                        producto.prd_nom = item.Producto.prd_nom;
+                        producto.prd_img = item.Producto.prd_img;
+                        producto.prd_prc = item.Producto.prd_prc;
+                        producto.prd_tal = item.Producto.prd_tal;
+                        producto.prd_crt = item.Producto.prd_crt;
+                        producto.prd_cnt = item.Producto.prd_cnt;
+                        producto.cat_id = item.Producto.cat_id;
+                        producto.prm_id = item.Producto.prm_id;
+                        producto.prd_dateOfCreated = item.Producto.prd_dateOfCreated;
+                        producto.Promocion = item.Producto.Promocion;
+                        producto.Categoria = item.Producto.Categoria;
+                        producto.ProductoEnCarrito = item.Producto.ProductoEnCarrito;
+                        item.Producto = producto;
+                    }
+                }
+                return productos;
+            }
+        }
     }
 }

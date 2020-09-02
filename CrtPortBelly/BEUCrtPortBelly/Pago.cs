@@ -9,6 +9,7 @@
 
 namespace BEUCrtPortBelly
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -20,7 +21,7 @@ namespace BEUCrtPortBelly
         public string pgo_ntg { get; set; }
         public System.DateTime pgo_fven { get; set; }
         public Nullable<int> pgo_cseg { get; set; }
-    
+        [JsonIgnore]
         public virtual Cliente Cliente { get; set; }
     }
 }

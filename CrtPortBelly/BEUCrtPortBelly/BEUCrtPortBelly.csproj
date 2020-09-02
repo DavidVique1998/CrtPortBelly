@@ -75,6 +75,7 @@
     <Compile Include="Categoria.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Correos.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -115,6 +116,7 @@
     <Compile Include="Queris\CarritoBLL.cs" />
     <Compile Include="Queris\CategoriaBLL.cs" />
     <Compile Include="Queris\ClienteBLL.cs" />
+    <Compile Include="Queris\CorreoBLL.cs" />
     <Compile Include="Queris\CuerpoFacturaBLL.cs" />
     <Compile Include="Queris\PagoBLL.cs" />
     <Compile Include="Queris\ProductoBLL.cs" />

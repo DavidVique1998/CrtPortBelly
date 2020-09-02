@@ -9,6 +9,7 @@
 
 namespace BEUCrtPortBelly
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -17,8 +18,9 @@ namespace BEUCrtPortBelly
         public int crf_id { get; set; }
         public int cbf_id { get; set; }
         public int car_id { get; set; }
-    
+        [JsonIgnore]
         public virtual CabezaFactura CabezaFactura { get; set; }
+        [JsonIgnore]
         public virtual Carrito Carrito { get; set; }
     }
 }

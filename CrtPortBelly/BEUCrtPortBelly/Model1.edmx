@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CabezaFactura">
           <Key>
             <PropertyRef Name="cbf_id" />
@@ -19,7 +19,7 @@
           </Key>
           <Property Name="car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cln_id" Type="int" Nullable="false" />
-          <Property Name="car_tipo" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="car_tipo" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -34,7 +34,7 @@
           </Key>
           <Property Name="cln_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="uso_id" Type="int" Nullable="false" />
-          <Property Name="cln_tipo" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="cln_tipo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="cln_dateOfCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CuerpoFactura">
@@ -97,9 +97,9 @@
             <PropertyRef Name="uso_id" />
           </Key>
           <Property Name="uso_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uso_usu" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="uso_con" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="uso_rol" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="uso_usu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="uso_con" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="uso_rol" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="uso_nom" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="uso_cor" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -293,8 +293,7 @@
             <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -314,7 +313,7 @@
           </Key>
           <Property Name="car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cln_id" Type="Int32" Nullable="false" />
-          <Property Name="car_tipo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="car_tipo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Carrito__cln_id__531856C7" FromRole="Carrito" ToRole="Cliente" />
           <NavigationProperty Name="CuerpoFactura" Relationship="Self.FK__CuerpoFac__car_i__681373AD" FromRole="Carrito" ToRole="CuerpoFactura" />
           <NavigationProperty Name="ProductoEnCarrito" Relationship="Self.FK__ProductoE__car_i__5F7E2DAC" FromRole="Carrito" ToRole="ProductoEnCarrito" />
@@ -333,7 +332,7 @@
           </Key>
           <Property Name="cln_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="uso_id" Type="Int32" Nullable="false" />
-          <Property Name="cln_tipo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cln_tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cln_dateOfCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CabezaFactura" Relationship="Self.FK__CabezaFac__cln_i__6442E2C9" FromRole="Cliente" ToRole="CabezaFactura" />
           <NavigationProperty Name="Carrito" Relationship="Self.FK__Carrito__cln_id__531856C7" FromRole="Cliente" ToRole="Carrito" />
@@ -409,9 +408,9 @@
             <PropertyRef Name="uso_id" />
           </Key>
           <Property Name="uso_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uso_usu" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="uso_con" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="uso_rol" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="uso_usu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uso_con" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uso_rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="uso_nom" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="uso_cor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__uso_id__4D5F7D71" FromRole="Usuario" ToRole="Cliente" />

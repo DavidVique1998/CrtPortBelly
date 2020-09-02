@@ -14,7 +14,7 @@
     </Key>
     <Property Name="car_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cln_id" Type="int" Nullable="false" />
-    <Property Name="car_tipo" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="car_tipo" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
@@ -29,7 +29,7 @@
     </Key>
     <Property Name="cln_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="uso_id" Type="int" Nullable="false" />
-    <Property Name="cln_tipo" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="cln_tipo" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="cln_dateOfCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="CuerpoFactura">
@@ -92,9 +92,9 @@
       <PropertyRef Name="uso_id" />
     </Key>
     <Property Name="uso_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="uso_usu" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="uso_con" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="uso_rol" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="uso_usu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="uso_con" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="uso_rol" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="uso_nom" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="uso_cor" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>

@@ -10,10 +10,10 @@ using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
+    [RoutePrefix("api/ProductoEnCarritos")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ProductoEnCarritosController : ApiController
     {
-
         [Authorize(Roles = "Cliente")]
         public IHttpActionResult Post(ProductoEnCarrito prdCarrito)
         {
@@ -81,6 +81,40 @@ namespace WebApiPortBelly.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message + prdCarrito.ToString());
+            }
+        }
+        [HttpGet]
+        [Route("MisProductosEnCarritoPen")]
+        [Authorize(Roles = "Cliente")]
+        public IHttpActionResult MisProductosEnCarritoPen(int id)
+        {
+            try
+            {
+                List<ProductoEnCarrito> productoEnCarritos = ProductoEnCarritoBLL.GetProdutsPendInCarByCli(id);
+                //202
+                return Content(HttpStatusCode.OK, productoEnCarritos);
+            }
+            catch (Exception ex)
+            {
+                //400
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet]
+        [Route("MisProductosEnCarritosPag")]
+        [Authorize(Roles = "Cliente")]
+        public IHttpActionResult MisProductosEnCarritosPag(int id)
+        {
+            try
+            {
+                List<ProductoEnCarrito> productoEnCarritos = ProductoEnCarritoBLL.GetProdutsPagInCarByCli(id);
+                //202
+                return Content(HttpStatusCode.OK, productoEnCarritos);
+            }
+            catch (Exception ex)
+            {
+                //400
+                return BadRequest(ex.Message);
             }
         }
     }
