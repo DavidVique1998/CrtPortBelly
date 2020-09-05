@@ -12,6 +12,7 @@ namespace WebApiPortBelly.Controllers
 {
     [RoutePrefix("api/Carritos")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [Authorize(Roles = "Cliente")]
     public class CarritosController : ApiController
     {
         [Authorize(Roles = "Cliente")]

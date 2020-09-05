@@ -1,4 +1,5 @@
 ﻿using BEUCrtPortBelly.Queris;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,33 +7,38 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     
+    //[EnableCorsAttribute("*", "*", "*",SupportsCredentials =true)]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("api/Imagen")]
     public class ImagenController : ApiController
     {
         [Authorize(Roles = "Administrador")]
+        [HttpPost]
         public IHttpActionResult Post()
         {
             try
             {
                 string imageName = null;
-                var httpRequest = HttpContext.Current.Request;
+                var httpRequest = System.Web.HttpContext.Current.Request;
                 //Upload Image
-                HttpPostedFile postedFile = httpRequest.Files["Image"];
-                imageName = SubirImagen(postedFile);
+                HttpPostedFile postedFile = httpRequest.Files["image"];
+                ArchivoBLL archivoBLL = new ArchivoBLL();
+                imageName = archivoBLL.SubirImagen(postedFile);
                 if (imageName != "")
                 {
                     return Content(HttpStatusCode.OK, imageName);
                 }
                 else
                 {
-                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto al crear");
+                    return Content(HttpStatusCode.Conflict, "Error la imagen entro en conflicto Crear");
                 }
             }
             catch (Exception)
@@ -47,7 +53,7 @@ namespace WebApiPortBelly.Controllers
             {
                 try
                 {
-                    string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + name);
+                    string filePath = System.Web.HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + name);
                     //Compruebo si la imagen existe
                     if (File.Exists(filePath))
                     {
@@ -62,7 +68,7 @@ namespace WebApiPortBelly.Controllers
                     else
                     {
                         //Optengo la imagen de la carpeta
-                        using (Image data = Image.FromFile(HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/default.png")))
+                        using (Image data = Image.FromFile(System.Web.HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/default.png")))
                         {
                             //transformo en bytes para mandar como request
                             byte[] result = (byte[])new ImageConverter().ConvertTo(data, typeof(byte[]));
@@ -82,14 +88,13 @@ namespace WebApiPortBelly.Controllers
 
             }
         }
-
-
         [Authorize(Roles = "Administrador")]
         public IHttpActionResult Delete(string name)
         {
             try
             {
-                EliminarImagen(name);
+                ArchivoBLL archivoBLL = new ArchivoBLL();
+                archivoBLL.EliminarImagen(name);
                 return Content(HttpStatusCode.OK, "La imagen se eliminó correctamente " + name);
 
             }
@@ -98,51 +103,6 @@ namespace WebApiPortBelly.Controllers
                 return Content(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-        [Authorize(Roles = "Administrador")]
-        private string SubirImagen(HttpPostedFile postedFile )
-        {
-            string imageName = "";
-            
-            if (postedFile != null && postedFile.ContentLength > 0)
-                try
-                {
-                    ArchivoBLL archivoBLL = new ArchivoBLL();
 
-                    //Create custom fileName
-                    imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
-                    imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
-                    var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
-                    if (!archivoBLL.ComprobarRuta(filePath))
-                    {
-                        archivoBLL.SubirArchivo(filePath, postedFile);
-                    }
-                    else
-                    {
-                        imageName = "";
-                    }
-                    //postedFile.SaveAs(filePath);
-                }
-                catch (Exception)
-                {
-                    imageName = "";
-                }
-            return imageName;
-        }
-        [Authorize(Roles = "Administrador")]
-        private void EliminarImagen(string imageName)
-        {
-            try
-            {
-                string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
-                ArchivoBLL archivoBLL = new ArchivoBLL();
-                if (archivoBLL.ComprobarRuta(filePath))
-                {
-                    archivoBLL.EliminarArchivo(filePath);
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
     }
 }

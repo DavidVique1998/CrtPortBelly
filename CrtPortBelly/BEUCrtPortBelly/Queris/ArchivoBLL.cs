@@ -65,5 +65,50 @@ namespace BEUCrtPortBelly.Queris
                 this.error = ex;
             }
         }
+
+        public string SubirImagen(HttpPostedFile postedFile)
+        {
+            string imageName = "";
+
+            if (postedFile != null && postedFile.ContentLength > 0)
+                try
+                {
+
+                    //Create custom fileName
+                    imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+                    imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
+                    var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
+                    if (!this.ComprobarRuta(filePath))
+                    {
+                        this.SubirArchivo(filePath, postedFile);
+                    }
+                    else
+                    {
+                        imageName = "";
+                    }
+                    //postedFile.SaveAs(filePath);
+                }
+                catch (Exception)
+                {
+                    imageName = "";
+                }
+            return imageName;
+        }
+
+        public  void EliminarImagen(string imageName)
+        {
+            try
+            {
+                string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
+               
+                if (this.ComprobarRuta(filePath))
+                {
+                    this.EliminarArchivo(filePath);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }

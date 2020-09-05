@@ -13,10 +13,10 @@ namespace WebApiPortBelly.Controllers
     
     [RoutePrefix("api/Clientes")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    
+    [Authorize(Roles = "Cliente")]
     public class ClientesController : ApiController
     {
-        [Authorize(Roles = "Cliente")]
+      
         public IHttpActionResult Get(int id)
         {
             try
@@ -31,7 +31,7 @@ namespace WebApiPortBelly.Controllers
                 return NotFound();
             }
         }
-        [Authorize(Roles = "Cliente")]
+
         public IHttpActionResult Put(Cliente cliente)
         {
             try
@@ -49,7 +49,6 @@ namespace WebApiPortBelly.Controllers
 
         [HttpGet]
         [Route("GetCliente")]
-        [Authorize(Roles = "Cliente")]
         public IHttpActionResult GetCliente(int id)
         {
             try

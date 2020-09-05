@@ -10,12 +10,11 @@ using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
-
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-
+    [EnableCorsAttribute("*", "*", "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+   
     public class ProductoController : ApiController
     {
-
         [Authorize(Roles = "Administrador")]
         public IHttpActionResult Post(Producto producto)
         {

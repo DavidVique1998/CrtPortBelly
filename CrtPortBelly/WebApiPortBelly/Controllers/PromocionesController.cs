@@ -11,8 +11,6 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-
-    
     public class PromocionesController : ApiController
     {
         [Authorize(Roles = "Administrador")]
@@ -68,27 +66,6 @@ namespace WebApiPortBelly.Controllers
             }
         }
 
-        //public IHttpActionResult Put(Promocion Promocion)
-        //{
-        //    try
-        //    {
-        //        bool llave = PromocionBLL.Updates(Promocion);
-        //        if (llave)
-        //        {
-        //            return Content(HttpStatusCode.OK, "Alumno actualizado correctamente");
-        //        }
-        //        else
-        //        {
-        //            return Content(HttpStatusCode.BadRequest, "No se puede actualizar el promocion");
-        //        }
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message + Promocion.ToString());
-        //    }
-        //}
         [Authorize(Roles = "Administrador")]
         public IHttpActionResult Put(Promocion promocion)
         {
