@@ -12,7 +12,8 @@ namespace WebApiPortBelly.Controllers
 {
     
     [RoutePrefix("api/Clientes")]
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCorsAttribute("*", "*", "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [Authorize(Roles = "Cliente")]
     public class ClientesController : ApiController
     {

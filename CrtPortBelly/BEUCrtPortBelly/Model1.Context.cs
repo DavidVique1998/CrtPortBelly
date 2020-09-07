@@ -12,6 +12,8 @@ namespace BEUCrtPortBelly
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PortBellyDBEntities : DbContext
     {
@@ -35,5 +37,23 @@ namespace BEUCrtPortBelly
         public virtual DbSet<ProductoEnCarrito> ProductoEnCarrito { get; set; }
         public virtual DbSet<Promocion> Promocion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+    
+        public virtual ObjectResult<PestadosProductosPorCategoria_Result> PestadosProductosPorCategoria(string estado)
+        {
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PestadosProductosPorCategoria_Result>("PestadosProductosPorCategoria", estadoParameter);
+        }
+    
+        public virtual ObjectResult<PestadosProductosPorPromocion_Result> PestadosProductosPorPromocion(string estado)
+        {
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PestadosProductosPorPromocion_Result>("PestadosProductosPorPromocion", estadoParameter);
+        }
     }
 }

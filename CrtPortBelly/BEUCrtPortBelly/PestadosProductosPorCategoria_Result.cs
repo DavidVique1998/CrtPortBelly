@@ -10,19 +10,10 @@
 namespace BEUCrtPortBelly
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ProductoEnCarrito
+    public partial class PestadosProductosPorCategoria_Result
     {
-        public int pcr_id { get; set; }
-        public int car_id { get; set; }
-        public int prd_id { get; set; }
-        public string pcr_est { get; set; }
-        public int pcr_cnt { get; set; }
-        public System.DateTime pcr_dateOfCreated { get; set; }
-        [Newtonsoft.Json.JsonIgnore]
-
-        public virtual Carrito Carrito { get; set; }
-        public virtual Producto Producto { get; set; }
+        public string cat_nom { get; set; }
+        public Nullable<int> cantidad { get; set; }
     }
 }

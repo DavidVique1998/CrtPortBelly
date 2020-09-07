@@ -195,6 +195,7 @@ namespace BEUCrtPortBelly.Queris
                 List<ProductoEnCarrito> productos= db.ProductoEnCarrito.Where(c => c.Carrito.Cliente.cln_id==cln_id && c.Carrito.car_tipo=="Pagado").ToList();
                 if (productos != null)
                 {
+                    
                     foreach (var item in productos)
                     {
                         Producto producto = new Producto();

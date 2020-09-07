@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BEUCrtPortBelly.Queris
 {
+
     public class PagoBLL
     {
         public static void Create(Pago a)
@@ -17,7 +18,6 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
-
                         db.Pago.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
@@ -83,15 +83,26 @@ namespace BEUCrtPortBelly.Queris
 
         public static List<Pago> List()
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Pago.Include(p => p.Cliente).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Pago.Include(p => p.Cliente).ToList();
+            }
         }
 
         public static List<Pago> List(int cln_id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.Pago.Where(x => x.cln_id.Equals(cln_id)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Pago.Where(x => x.cln_id.Equals(cln_id)).ToList();
+            }
         }
 
+        public static Pago GetPagoPrincipal(int cln_id)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.Pago.FirstOrDefault(x => x.cln_id.Equals(cln_id));
+            }
+        }
     }
 }

@@ -10,22 +10,25 @@ using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
+    //[EnableCorsAttribute("*", "*", "*")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("api/Pagos")]
     public class PagosController : ApiController
     {
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Post(Pago pago)
         {
             try
             {
                 PagoBLL.Create(pago);
-                return Content(HttpStatusCode.Created, "Pagos creado correctamente");
+                return Content(HttpStatusCode.Created, "Metodo de pago creado correctamente");
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize(Roles = "Administrador, Cliente")]
         public IHttpActionResult Get(int id)
         {
             try
@@ -38,6 +41,7 @@ namespace WebApiPortBelly.Controllers
                 return NotFound();
             }
         }
+        [Authorize(Roles = "Administrador")]
         public IHttpActionResult Get()
         {
             try
@@ -50,19 +54,20 @@ namespace WebApiPortBelly.Controllers
                 return BadRequest();
             }
         }
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Delete(int id)
         {
             try
             {
                 PagoBLL.Delete(id);
-                return Ok("Pagos eliminado correctamente");
+                return Ok("Metodo de pago eliminado correctamente");
             }
             catch (Exception ex)
             {
                 return Content(HttpStatusCode.BadRequest, ex);
             }
         }
-
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Put(Pago pago)
         {
             try
@@ -77,6 +82,41 @@ namespace WebApiPortBelly.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message + pago.ToString());
+            }
+        }
+        [HttpGet]
+        [Route("MisMetodosPago")]
+        [Authorize(Roles = "Cliente")]
+        public IHttpActionResult MisMetodosPago(int id)
+        {
+            try
+            {
+                List<Pago> pagos = PagoBLL.List(id);
+                //202
+                return Content(HttpStatusCode.OK, pagos);
+            }
+            catch (Exception ex)
+            {
+                //400
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("MiUnicoMetodoPago")]
+        [Authorize(Roles = "Cliente")]
+        public IHttpActionResult MiUnicoMetodoPago(int id)
+        {
+            try
+            {
+                List<Pago> pagos = PagoBLL.List(id);
+                //202
+                return Content(HttpStatusCode.OK, pagos);
+            }
+            catch (Exception ex)
+            {
+                //400
+                return BadRequest(ex.Message);
             }
         }
     }

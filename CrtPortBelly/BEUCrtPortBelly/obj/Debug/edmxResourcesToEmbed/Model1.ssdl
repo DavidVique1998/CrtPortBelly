@@ -39,6 +39,7 @@
     <Property Name="crf_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cbf_id" Type="int" Nullable="false" />
     <Property Name="car_id" Type="int" Nullable="false" />
+    <Property Name="crf_dateOfCreated" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Pago">
     <Key>
@@ -48,7 +49,7 @@
     <Property Name="cln_id" Type="int" Nullable="false" />
     <Property Name="pgo_nom" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="pgo_ntg" Type="nchar" MaxLength="16" Nullable="false" />
-    <Property Name="pgo_fven" Type="smalldatetime" Nullable="false" />
+    <Property Name="pgo_fven" Type="date" Nullable="false" />
     <Property Name="pgo_cseg" Type="int" />
   </EntityType>
   <EntityType Name="Producto">
@@ -236,6 +237,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="PestadosProductosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PestadosProductosPorPromocion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="EntitiesStoreContainer">
     <EntitySet Name="CabezaFactura" EntityType="Self.CabezaFactura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />

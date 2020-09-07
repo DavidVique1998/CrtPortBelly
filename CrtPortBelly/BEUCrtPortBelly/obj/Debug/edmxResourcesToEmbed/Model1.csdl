@@ -51,6 +51,7 @@
     <Property Name="car_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CabezaFactura" Relationship="Self.FK__CuerpoFac__cbf_i__671F4F74" FromRole="CuerpoFactura" ToRole="CabezaFactura" />
     <NavigationProperty Name="Carrito" Relationship="Self.FK__CuerpoFac__car_i__681373AD" FromRole="CuerpoFactura" ToRole="Carrito" />
+    <Property Name="crf_dateOfCreated" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Pago">
     <Key>
@@ -307,5 +308,19 @@
       <End Role="Producto" EntitySet="Producto" />
       <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
     </AssociationSet>
+    <FunctionImport Name="PestadosProductosPorCategoria" ReturnType="Collection(Entities.PestadosProductosPorCategoria_Result)">
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PestadosProductosPorPromocion" ReturnType="Collection(Entities.PestadosProductosPorPromocion_Result)">
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="PestadosProductosPorCategoria_Result">
+    <Property Type="String" Name="cat_nom" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PestadosProductosPorPromocion_Result">
+    <Property Type="String" Name="prm_nom" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+  </ComplexType>
 </Schema>

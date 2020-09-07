@@ -17,7 +17,7 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
-
+                        a.cbf_dateOfCreated = DateTime.Now;
                         db.CabezaFactura.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
@@ -83,15 +83,39 @@ namespace BEUCrtPortBelly.Queris
 
         public static List<CabezaFactura> List()
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.CabezaFactura.Include(c => c.Cliente).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.CabezaFactura.Include(c => c.Cliente).ToList();
+            }
         }
 
         public static List<CabezaFactura> List(int cln_id)
         {
-            PortBellyDBEntities db = new PortBellyDBEntities();
-            return db.CabezaFactura.Where(x => x.cln_id.Equals(cln_id)).ToList();
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.CabezaFactura.Where(x => x.cln_id.Equals(cln_id)).ToList();
+            }
         }
 
+        public static CabezaFactura GetCabFactByCli(int cln_id)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                CabezaFactura cabezaFactura = db.CabezaFactura.FirstOrDefault(x => x.cln_id == cln_id);
+                if (cabezaFactura != null)
+                {
+                    return db.CabezaFactura.FirstOrDefault(x => x.cln_id == cln_id);
+                }
+                else
+                {
+                    cabezaFactura = new CabezaFactura();
+                    cabezaFactura.cln_id = cln_id;
+                    Create(cabezaFactura);
+                    return cabezaFactura;
+                }
+                
+            }
+
+        }
     }
 }

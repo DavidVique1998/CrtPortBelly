@@ -17,6 +17,7 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
+                        a.crf_dateOfCreated = DateTime.Now;
                         db.CuerpoFactura.Add(a);
                         db.SaveChanges();
                         transaction.Commit();

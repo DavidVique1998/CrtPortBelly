@@ -9,7 +9,6 @@
 
 namespace BEUCrtPortBelly
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,13 +24,13 @@ namespace BEUCrtPortBelly
         public int car_id { get; set; }
         public int cln_id { get; set; }
         public string car_tipo { get; set; }
-        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<CuerpoFactura> CuerpoFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<ProductoEnCarrito> ProductoEnCarrito { get; set; }
     }
 }

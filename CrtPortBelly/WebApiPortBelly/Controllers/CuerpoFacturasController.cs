@@ -18,6 +18,7 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
+                cuerpoFactura.CabezaFactura.cbf_dateOfCreated = DateTime.Now;
                 CuerpoFacturaBLL.Create(cuerpoFactura);
                 return Content(HttpStatusCode.Created, "CuerpoFacturas creado correctamente");
             }
