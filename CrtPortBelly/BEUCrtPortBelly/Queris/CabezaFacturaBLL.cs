@@ -104,7 +104,8 @@ namespace BEUCrtPortBelly.Queris
                 CabezaFactura cabezaFactura = db.CabezaFactura.FirstOrDefault(x => x.cln_id == cln_id);
                 if (cabezaFactura != null)
                 {
-                    return db.CabezaFactura.FirstOrDefault(x => x.cln_id == cln_id);
+
+                    return cabezaFactura;
                 }
                 else
                 {

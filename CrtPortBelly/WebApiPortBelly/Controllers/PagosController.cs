@@ -74,7 +74,7 @@ namespace WebApiPortBelly.Controllers
             {
                 PagoBLL.Update(pago);
 
-                return Content(HttpStatusCode.OK, "Alumno actualizado correctamente");
+                return Content(HttpStatusCode.Accepted, "Pago actualizado correctamente");
 
 
 
@@ -109,7 +109,7 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                List<Pago> pagos = PagoBLL.List(id);
+                Pago pagos = PagoBLL.GetUnicoPago(id);
                 //202
                 return Content(HttpStatusCode.OK, pagos);
             }

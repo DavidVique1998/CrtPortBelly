@@ -15,8 +15,8 @@ using System.Web.Http.Cors;
 namespace WebApiPortBelly.Controllers
 {
     
-    //[EnableCorsAttribute("*", "*", "*",SupportsCredentials =true)]
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCorsAttribute("*", "*", "*",SupportsCredentials =true)]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/Imagen")]
     public class ImagenController : ApiController
     {

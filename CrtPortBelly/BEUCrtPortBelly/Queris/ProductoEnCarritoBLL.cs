@@ -18,12 +18,22 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
-                        a.pcr_est = "Pendiente";
-                        a.pcr_dateOfCreated = DateTime.Now;
-                        db.ProductoEnCarrito.Add(a);
-                        db.SaveChanges();
-                        transaction.Commit();
-                        ProductoBLL.Update(a.prd_id, a.pcr_cnt);
+                        ProductoEnCarrito pcr = db.ProductoEnCarrito.FirstOrDefault(x => x.prd_id == a.prd_id && x.Carrito.car_tipo =="Pendiente");
+                        if (pcr == null)
+                        {
+                            a.pcr_est = "Pendiente";
+                            a.pcr_dateOfCreated = DateTime.Now;
+                            db.ProductoEnCarrito.Add(a);
+                            db.SaveChanges();
+                            transaction.Commit();
+                            ProductoBLL.Update(a.prd_id, a.pcr_cnt);
+                        }
+                        else
+                        {
+                            pcr.pcr_cnt += a.pcr_cnt;
+                            Updates(pcr);
+                        }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -81,6 +91,7 @@ namespace BEUCrtPortBelly.Queris
                         var order = db.ProductoEnCarrito.AsNoTracking().Where(s => s.pcr_id == pc.pcr_id).FirstOrDefault();
                         prd.pcr_id = order.pcr_id;
                         prd.prd_id = pc.prd_id;
+                        prd.car_id = pc.car_id;
                         //Restablecer cantidad productos
                         var cantidad = order.pcr_cnt - pc.pcr_cnt;
                         prd.pcr_cnt = pc.pcr_cnt;
@@ -88,8 +99,8 @@ namespace BEUCrtPortBelly.Queris
                         //-----------------------
                         prd.pcr_est = pc.pcr_est;
                         prd.pcr_dateOfCreated = order.pcr_dateOfCreated;
-
-                        prd.Producto = order.Producto;
+                        ProductoBLL.Updates(order.Producto);
+                        // prd.Producto = order.Producto;
                         db.Entry(prd).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                         transaction.Commit();
@@ -112,11 +123,12 @@ namespace BEUCrtPortBelly.Queris
                 {
                     try
                     {
+                        
                         ProductoEnCarrito ProductoEnCarrito = db.ProductoEnCarrito.Find(id);
+                        ProductoBLL.Update(ProductoEnCarrito.prd_id, (-1 * ProductoEnCarrito.pcr_cnt));
                         db.Entry(ProductoEnCarrito).State = System.Data.Entity.EntityState.Deleted;
                         db.SaveChanges();
                         transaction.Commit();
-                        ProductoBLL.Update(ProductoEnCarrito.prd_id, (-1 * ProductoEnCarrito.pcr_cnt));
                     }
                     catch (Exception ex)
                     {

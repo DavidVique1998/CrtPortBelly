@@ -19,8 +19,8 @@ using Image = System.Drawing.Image;
 namespace WebApiPortBelly.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-
-   
+    //[EnableCorsAttribute("*", "*", "*", SupportsCredentials = true)]
+    [RoutePrefix("api/Productos")]
     public class ProductosController : ApiController
     {
         [Authorize(Roles = "Administrador")]

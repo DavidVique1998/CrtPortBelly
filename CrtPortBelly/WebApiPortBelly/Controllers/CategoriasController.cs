@@ -10,8 +10,10 @@ using System.Web.Http.Cors;
 
 namespace WebApiPortBelly.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    
+    [EnableCorsAttribute("*", "*", "*", SupportsCredentials = true)]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("api/Categorias")]
+
     public class CategoriasController : ApiController
     {
         [Authorize(Roles = "Administrador")]

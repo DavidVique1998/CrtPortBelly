@@ -21,7 +21,7 @@ namespace WebApiPortBelly.Controllers
             try
             {
                 CabezaFacturaBLL.Create(cabezaFactura);
-                return Content(HttpStatusCode.Created, "CabezaFacturas creado correctamente");
+                return Content(HttpStatusCode.Created, "Factura creado correctamente");
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace WebApiPortBelly.Controllers
             try
             {
                 CabezaFacturaBLL.Delete(id);
-                return Ok("CabezaFacturas eliminado correctamente");
+                return Ok("Facturaa eliminada correctamente");
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace WebApiPortBelly.Controllers
             {
                 CabezaFacturaBLL.Update(cabezaFactura);
 
-                return Content(HttpStatusCode.OK, "Alumno actualizado correctamente");
+                return Content(HttpStatusCode.OK, "Factura actualizada correctamente");
 
 
 
@@ -91,7 +91,7 @@ namespace WebApiPortBelly.Controllers
             try
             {
                 CabezaFactura cabezaFactura = CabezaFacturaBLL.GetCabFactByCli(id);
-                if (cabezaFactura != null)
+                if (cabezaFactura == null)
                 {
                     return Content(HttpStatusCode.NotFound, "Factura no encontrada");
                 }

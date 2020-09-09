@@ -18,9 +18,8 @@ namespace WebApiPortBelly.Controllers
         {
             try
             {
-                cuerpoFactura.CabezaFactura.cbf_dateOfCreated = DateTime.Now;
                 CuerpoFacturaBLL.Create(cuerpoFactura);
-                return Content(HttpStatusCode.Created, "CuerpoFacturas creado correctamente");
+                return Content(HttpStatusCode.Created, "Cuerpo Factura creado correctamente");
             }
             catch (Exception ex)
             {
@@ -57,7 +56,7 @@ namespace WebApiPortBelly.Controllers
             try
             {
                 CuerpoFacturaBLL.Delete(id);
-                return Ok("CuerpoFacturas eliminado correctamente");
+                return Ok("Cuerpo Factura eliminado correctamente");
             }
             catch (Exception ex)
             {
@@ -71,7 +70,7 @@ namespace WebApiPortBelly.Controllers
             {
                 CuerpoFacturaBLL.Update(cuerpoFactura);
 
-                return Content(HttpStatusCode.OK, "Alumno actualizado correctamente");
+                return Content(HttpStatusCode.OK, "Cuerpo factura actualizada correctamente");
 
 
 

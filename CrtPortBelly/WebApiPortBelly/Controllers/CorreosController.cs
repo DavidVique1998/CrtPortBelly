@@ -15,6 +15,7 @@ namespace WebApiPortBelly.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CorreosController : ApiController
     {
+        [Authorize(Roles = "Cliente")]
         public IHttpActionResult Post(Correos cor)
         {
             try

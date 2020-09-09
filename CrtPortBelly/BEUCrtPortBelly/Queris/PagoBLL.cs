@@ -59,6 +59,36 @@ namespace BEUCrtPortBelly.Queris
             }
         }
 
+        public static bool Updates(Pago p)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Pago pgo = new Pago();
+                        var order = db.Pago.AsNoTracking().Where(s => s.pgo_id == p.pgo_id).FirstOrDefault();
+                        pgo.pgo_id = order.pgo_id;
+                        pgo.pgo_nom = p.pgo_nom;
+                        pgo.pgo_cseg = p.pgo_cseg;
+                        pgo.pgo_fven = p.pgo_fven;
+                        pgo.pgo_ntg = p.pgo_ntg;
+                        
+                        db.Entry(pgo).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
+
         public static void Delete(int? id)
         {
             using (PortBellyDBEntities db = new PortBellyDBEntities())
@@ -97,11 +127,11 @@ namespace BEUCrtPortBelly.Queris
             }
         }
 
-        public static Pago GetPagoPrincipal(int cln_id)
+        public static Pago GetUnicoPago(int cln_id)
         {
             using (PortBellyDBEntities db = new PortBellyDBEntities())
             {
-                return db.Pago.FirstOrDefault(x => x.cln_id.Equals(cln_id));
+                return db.Pago.FirstOrDefault(x => x.cln_id==cln_id);
             }
         }
     }

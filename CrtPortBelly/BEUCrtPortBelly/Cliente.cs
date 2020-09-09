@@ -33,6 +33,7 @@ namespace BEUCrtPortBelly
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<Carrito> Carrito { get; set; }
+        [Newtonsoft.Json.JsonIgnore]
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [Newtonsoft.Json.JsonIgnore]
