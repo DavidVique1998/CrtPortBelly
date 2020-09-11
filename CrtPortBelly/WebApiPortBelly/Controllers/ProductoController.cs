@@ -12,7 +12,7 @@ namespace WebApiPortBelly.Controllers
 {
     //[EnableCorsAttribute("*", "*", "*")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-   
+    [RoutePrefix("api/Producto")]
     public class ProductoController : ApiController
     {
         [Authorize(Roles = "Administrador")]

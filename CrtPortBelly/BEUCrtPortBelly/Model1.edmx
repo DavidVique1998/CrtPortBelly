@@ -186,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__cat_id__5BAD9CC8">
+        <Association Name="FK__Producto__cat_id__7A672E12">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -200,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__prm_id__5AB9788F">
+        <Association Name="FK__Producto__prm_id__797309D9">
           <End Role="Promocion" Type="Self.Promocion" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -228,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductoE__prd_i__607251E5">
+        <Association Name="FK__ProductoE__prd_i__7B5B524B">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -283,11 +283,11 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pago" EntitySet="Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__cat_id__5BAD9CC8" Association="Self.FK__Producto__cat_id__5BAD9CC8">
+          <AssociationSet Name="FK__Producto__cat_id__7A672E12" Association="Self.FK__Producto__cat_id__7A672E12">
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__prm_id__5AB9788F" Association="Self.FK__Producto__prm_id__5AB9788F">
+          <AssociationSet Name="FK__Producto__prm_id__797309D9" Association="Self.FK__Producto__prm_id__797309D9">
             <End Role="Promocion" EntitySet="Promocion" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -295,7 +295,7 @@
             <End Role="Carrito" EntitySet="Carrito" />
             <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductoE__prd_i__607251E5" Association="Self.FK__ProductoE__prd_i__607251E5">
+          <AssociationSet Name="FK__ProductoE__prd_i__7B5B524B" Association="Self.FK__ProductoE__prd_i__7B5B524B">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
           </AssociationSet>
@@ -613,10 +613,10 @@
             <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
           </AssociationSet>
           <FunctionImport Name="PestadosProductosPorCategoria" ReturnType="Collection(Entities.PestadosProductosPorCategoria_Result)">
-            <Parameter Name="estado" Mode="In" Type="String" />
+          <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PestadosProductosPorPromocion" ReturnType="Collection(Entities.PestadosProductosPorPromocion_Result)">
-            <Parameter Name="estado" Mode="In" Type="String" />
+          <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PestadosProductosPorCategoria_Result">

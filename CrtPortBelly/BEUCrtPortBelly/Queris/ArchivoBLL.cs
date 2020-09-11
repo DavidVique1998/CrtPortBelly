@@ -77,7 +77,7 @@ namespace BEUCrtPortBelly.Queris
                     //Create custom fileName
                     imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
-                    var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
+                    var filePath = HttpContext.Current.Server.MapPath(@"~/portbelly2/Imagenes/" + imageName);
                     if (!this.ComprobarRuta(filePath))
                     {
                         this.SubirArchivo(filePath, postedFile);
@@ -99,7 +99,7 @@ namespace BEUCrtPortBelly.Queris
         {
             try
             {
-                string filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
+                string filePath = HttpContext.Current.Server.MapPath(@"~/portbelly2/Imagenes/" + imageName);
                
                 if (this.ComprobarRuta(filePath))
                 {

@@ -53,7 +53,7 @@ namespace WebApiPortBelly.Controllers
             {
                 try
                 {
-                    string filePath = System.Web.HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + name);
+                    string filePath = System.Web.HttpContext.Current.Server.MapPath(@"~/portbelly2/Imagenes/" + name);
                     //Compruebo si la imagen existe
                     if (File.Exists(filePath))
                     {
@@ -68,7 +68,7 @@ namespace WebApiPortBelly.Controllers
                     else
                     {
                         //Optengo la imagen de la carpeta
-                        using (Image data = Image.FromFile(System.Web.HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/default.png")))
+                        using (Image data = Image.FromFile(System.Web.HttpContext.Current.Server.MapPath(@"~/portbelly2/Imagenes/default.png")))
                         {
                             //transformo en bytes para mandar como request
                             byte[] result = (byte[])new ImageConverter().ConvertTo(data, typeof(byte[]));

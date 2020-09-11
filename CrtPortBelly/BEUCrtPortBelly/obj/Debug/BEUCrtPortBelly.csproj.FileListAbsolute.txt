@@ -11,7 +11,6 @@ C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.pdb
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Newtonsoft.Json.dll
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Newtonsoft.Json.xml
-C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.csprojAssemblyReference.cache
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Microsoft.IdentityModel.Logging.dll
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Microsoft.IdentityModel.Tokens.dll
@@ -20,3 +19,4 @@ C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Microsoft.IdentityModel.Logging.xml
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\Microsoft.IdentityModel.Tokens.xml
 C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\David\source\repos\CrtPortBelly\CrtPortBelly\BEUCrtPortBelly\obj\Debug\BEUCrtPortBelly.csprojAssemblyReference.cache

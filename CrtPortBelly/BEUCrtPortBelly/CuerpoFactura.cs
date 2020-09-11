@@ -18,7 +18,6 @@ namespace BEUCrtPortBelly
         public int cbf_id { get; set; }
         public int car_id { get; set; }
         public System.DateTime crf_dateOfCreated { get; set; }
-
         [Newtonsoft.Json.JsonIgnore]
         public virtual CabezaFactura CabezaFactura { get; set; }
         [Newtonsoft.Json.JsonIgnore]

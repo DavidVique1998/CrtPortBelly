@@ -21,7 +21,6 @@ namespace BEUCrtPortBelly
         public int pcr_cnt { get; set; }
         public System.DateTime pcr_dateOfCreated { get; set; }
         [Newtonsoft.Json.JsonIgnore]
-
         public virtual Carrito Carrito { get; set; }
         public virtual Producto Producto { get; set; }
     }
