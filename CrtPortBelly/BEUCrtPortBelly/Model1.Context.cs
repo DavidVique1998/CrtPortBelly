@@ -55,5 +55,33 @@ namespace BEUCrtPortBelly
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PestadosProductosPorPromocion_Result>("PestadosProductosPorPromocion", estadoParameter);
         }
+    
+        public virtual ObjectResult<PproductosExistentesPorCategoria_Result> PproductosExistentesPorCategoria()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PproductosExistentesPorCategoria_Result>("PproductosExistentesPorCategoria");
+        }
+    
+        public virtual ObjectResult<PventasPorMesesSegunCategoria_Result> PventasPorMesesSegunCategoria()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PventasPorMesesSegunCategoria_Result>("PventasPorMesesSegunCategoria");
+        }
+    
+        public virtual ObjectResult<PventasPorMesesSegunCategoriaEnAnio_Result> PventasPorMesesSegunCategoriaEnAnio(Nullable<int> yeari)
+        {
+            var yeariParameter = yeari.HasValue ?
+                new ObjectParameter("yeari", yeari) :
+                new ObjectParameter("yeari", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PventasPorMesesSegunCategoriaEnAnio_Result>("PventasPorMesesSegunCategoriaEnAnio", yeariParameter);
+        }
+    
+        public virtual ObjectResult<PventPorMesSegCatEnAnio_Result> PventPorMesSegCatEnAnio(Nullable<int> yeari)
+        {
+            var yeariParameter = yeari.HasValue ?
+                new ObjectParameter("yeari", yeari) :
+                new ObjectParameter("yeari", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PventPorMesSegCatEnAnio_Result>("PventPorMesSegCatEnAnio", yeariParameter);
+        }
     }
 }

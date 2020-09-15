@@ -21,7 +21,6 @@ namespace BEUCrtPortBelly.Queris
                     //Create custom fileName
                     imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
                     imageName = imageName + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(postedFile.FileName);
-                    var filePath = HttpContext.Current.Server.MapPath(@"~/Content/Imagenes/" + imageName);
                     //postedFile.SaveAs(filePath);
                 }
                 catch (Exception)

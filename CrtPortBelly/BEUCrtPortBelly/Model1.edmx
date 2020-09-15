@@ -248,6 +248,14 @@
         <Function Name="PestadosProductosPorPromocion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estado" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="PproductosExistentesPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PventasPorMesesSegunCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PventasPorMesesSegunCategoriaEnAnio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="yeari" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PventPorMesSegCatEnAnio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="yeari" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="EntitiesStoreContainer">
           <EntitySet Name="CabezaFactura" EntityType="Self.CabezaFactura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
@@ -618,6 +626,14 @@
           <FunctionImport Name="PestadosProductosPorPromocion" ReturnType="Collection(Entities.PestadosProductosPorPromocion_Result)">
           <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="PproductosExistentesPorCategoria" ReturnType="Collection(Entities.PproductosExistentesPorCategoria_Result)" />
+          <FunctionImport Name="PventasPorMesesSegunCategoria" ReturnType="Collection(Entities.PventasPorMesesSegunCategoria_Result)" />
+          <FunctionImport Name="PventasPorMesesSegunCategoriaEnAnio" ReturnType="Collection(Entities.PventasPorMesesSegunCategoriaEnAnio_Result)">
+          <Parameter Name="yeari" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PventPorMesSegCatEnAnio" ReturnType="Collection(Entities.PventPorMesSegCatEnAnio_Result)">
+            <Parameter Name="yeari" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PestadosProductosPorCategoria_Result">
           <Property Type="String" Name="cat_nom" Nullable="false" MaxLength="30" />
@@ -626,6 +642,25 @@
         <ComplexType Name="PestadosProductosPorPromocion_Result">
           <Property Type="String" Name="prm_nom" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PproductosExistentesPorCategoria_Result">
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PventasPorMesesSegunCategoria_Result">
+          <Property Type="Int32" Name="Mes" Nullable="true" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PventasPorMesesSegunCategoriaEnAnio_Result">
+          <Property Type="Int32" Name="Mes" Nullable="true" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PventPorMesSegCatEnAnio_Result">
+          <Property Type="Int32" Name="Mes" Nullable="true" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -755,6 +790,41 @@
               <ComplexTypeMapping TypeName="Entities.PestadosProductosPorPromocion_Result">
                 <ScalarProperty Name="prm_nom" ColumnName="prm_nom" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PproductosExistentesPorCategoria" FunctionName="Entities.Store.PproductosExistentesPorCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities.PproductosExistentesPorCategoria_Result">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PventasPorMesesSegunCategoria" FunctionName="Entities.Store.PventasPorMesesSegunCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities.PventasPorMesesSegunCategoria_Result">
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PventasPorMesesSegunCategoriaEnAnio" FunctionName="Entities.Store.PventasPorMesesSegunCategoriaEnAnio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities.PventasPorMesesSegunCategoriaEnAnio_Result">
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PventPorMesSegCatEnAnio" FunctionName="Entities.Store.PventPorMesSegCatEnAnio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities.PventPorMesSegCatEnAnio_Result">
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

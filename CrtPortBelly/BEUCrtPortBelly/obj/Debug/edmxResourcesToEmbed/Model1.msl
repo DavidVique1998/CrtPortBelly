@@ -126,5 +126,40 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PproductosExistentesPorCategoria" FunctionName="Entities.Store.PproductosExistentesPorCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Entities.PproductosExistentesPorCategoria_Result">
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PventasPorMesesSegunCategoria" FunctionName="Entities.Store.PventasPorMesesSegunCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Entities.PventasPorMesesSegunCategoria_Result">
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PventasPorMesesSegunCategoriaEnAnio" FunctionName="Entities.Store.PventasPorMesesSegunCategoriaEnAnio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Entities.PventasPorMesesSegunCategoriaEnAnio_Result">
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PventPorMesSegCatEnAnio" FunctionName="Entities.Store.PventPorMesSegCatEnAnio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Entities.PventPorMesSegCatEnAnio_Result">
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

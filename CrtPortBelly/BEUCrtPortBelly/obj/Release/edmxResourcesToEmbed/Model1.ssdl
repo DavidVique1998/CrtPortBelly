@@ -243,6 +243,14 @@
   <Function Name="PestadosProductosPorPromocion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="estado" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="PproductosExistentesPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PventasPorMesesSegunCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PventasPorMesesSegunCategoriaEnAnio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="yeari" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PventPorMesSegCatEnAnio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="yeari" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="EntitiesStoreContainer">
     <EntitySet Name="CabezaFactura" EntityType="Self.CabezaFactura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />

@@ -23,6 +23,39 @@ namespace BEUCrtPortBelly.Queris
                 return db.PestadosProductosPorPromocion(estado).ToList();
             }
         }
+        public static List<PventasPorMesesSegunCategoria_Result> GetProductoVendidosPorMesesPorCategoria()
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.PventasPorMesesSegunCategoria().ToList();
+            }
+        }
+
+        public static List<PproductosExistentesPorCategoria_Result> GetProductosExistentesPorCategoria()
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.PproductosExistentesPorCategoria().ToList();
+            }
+        }
+
+        public static List<PventasPorMesesSegunCategoriaEnAnio_Result> GetProductoVendidosPorMesesPorCategoriaEnAnio(int year)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.PventasPorMesesSegunCategoriaEnAnio(year).ToList();
+            }
+        }
+
+        public static List<PventPorMesSegCatEnAnio_Result> GetPrdVenPorMesPorCatEnAnio(int year)
+        {
+            using (PortBellyDBEntities db = new PortBellyDBEntities())
+            {
+                return db.PventPorMesSegCatEnAnio(year).ToList();
+            }
+        }
+
+
 
     }
 }
